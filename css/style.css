@@ -1,0 +1,32 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0f0f1e;
+  color: #fff;
+  overflow: hidden;
+}
+
+.Calendar {
+  height: 85vh;
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.Calendar__ad {
+  font-size: 4vmin;
+}
+
+.Calendar__bs-day {
+  font-size: 40vmin;
+  font-weight: 100;
+}
+
+.Calendar__bs-date {
+  font-size: 8vmin;
+}
