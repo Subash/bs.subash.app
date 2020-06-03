@@ -47,13 +47,13 @@ function getDateFromQuery() {
 
   if(params.get('ad')) {
     const [year, month, day] = split(params.get('ad'));
-    if(!year || !month || !day) throw new Error('Please set the date query in a valid format. Eg: 2070-01-30');
+    if(!year || !month || !day) throw new Error('Please set the date query in a valid format. Eg: 2020-01-30');
     return new Date(Date.UTC(year, month - 1, day) + NPT_OFFSET_MS); // always assume the input is in NPT
   }
 
   if(params.get('bs')) {
     const [year, month, day] = split(params.get('bs'));
-    if(!year || !month || !day) throw new Error('Please set the date query in a valid format. Eg: 2020-01-30');
+    if(!year || !month || !day) throw new Error('Please set the date query in a valid format. Eg: 2075-01-30');
     const ad = toAD({ year, month, day });
     return new Date(Date.UTC(ad.year, ad.month - 1, ad.day) + NPT_OFFSET_MS); // always assume the input is in NPT
   }
