@@ -84,7 +84,7 @@ function renderError(message) {
 function render() {
   try {
     renderCalendar();
-    renderError(); // remove error if successful
+    renderError(); // remove error if the rendering is successful
   } catch (err) {
     renderError(err.message);
   }
