@@ -59,7 +59,7 @@ function getDateFromQuery() {
   }
 }
 
-function render() {
+function renderCalendar() {
   const date = getDateFromQuery();
   if(date) {
     document.body.classList.add('is-query');
@@ -69,6 +69,25 @@ function render() {
 
   renderAD(date || new Date());
   renderBS(date || new Date());
+}
+
+function renderError(message) {
+  if(message) {
+    document.body.classList.add('has-error');
+    document.querySelector('.Error__message').innerText = message;
+  } else {
+    document.body.classList.remove('has-error');
+    document.querySelector('.Error__message').innerText = '';
+  }
+}
+
+function render() {
+  try {
+    renderCalendar();
+    renderError(); // remove error if successful
+  } catch (err) {
+    renderError(err.message);
+  }
 }
 
 window.addEventListener('DOMContentLoaded', render);

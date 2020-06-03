@@ -11,6 +11,7 @@ html, body {
 body {
   background: #0f0f1e;
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body.is-query {
@@ -18,12 +19,24 @@ body.is-query {
   color: black;
 }
 
+body.has-error {
+  background: #FF9AA2;
+  color: black;
+}
+
+body.has-error .Calendar {
+  display: none;
+}
+
+body:not(.has-error) .Error {
+  display: none;
+}
+
 .Calendar {
   height: 85vh;
   display: grid;
-  align-items: center;
+  align-content: center;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .Calendar__ad {
@@ -37,4 +50,20 @@ body.is-query {
 
 .Calendar__bs-date {
   font-size: 8vmin;
+}
+
+.Error {
+  height: 85vh;
+  display: grid;
+  grid-gap: 4vmin;
+  align-content: center;
+  text-align: center;
+}
+
+.Error__icon svg {
+  width: 20vmin;
+}
+
+.Error__message {
+  font-size: 4vmin;
 }
