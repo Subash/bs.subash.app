@@ -13,7 +13,8 @@ html(lang="en")
     meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
 
     link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap", rel="stylesheet")
-    link(href="/css/style.css", rel="stylesheet")
+    style
+      include ../css/style.css
 
   body
     .Calendar
@@ -27,4 +28,5 @@ html(lang="en")
         include ../img/broken-robot.svg
       .Error__message
 
-    script(src='/js/app-dist.js')
+    script
+      include ../js/app-dist.js
