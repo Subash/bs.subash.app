@@ -40,16 +40,16 @@ body:not(.has-error) .Error {
   text-align: center;
 }
 
-.Calendar__ad {
+.Calendar__secondary {
   font-size: 4vmin;
 }
 
-.Calendar__bs-day {
+.Calendar__primary-day {
   font-size: 40vmin;
   font-weight: 100;
 }
 
-.Calendar__bs-date {
+.Calendar__primary-date {
   font-size: 8vmin;
 }
 

@@ -8,20 +8,29 @@ function format(date, options = {}) {
   }).format(date);
 }
 
-function renderAD(date) {
-  const node = document.querySelector('.Calendar__ad');
+function renderPrimary({ day, monthName, year }) {
+  document.querySelector('.Calendar__primary-day').innerText = day;
+  document.querySelector('.Calendar__primary-date').innerText = `${monthName} ${year}`;
+}
 
+function renderSecondary({ day, dayName, monthName, year }) {
+  document.querySelector('.Calendar__secondary').innerText = `${dayName}, ${day} ${monthName} ${year}`;
+}
+
+function formatAsAD(date) {
   const day = format(date, { day: 'numeric' });
   const dayName = format(date, { weekday: 'short' });
   const monthName = format(date, { month: 'long' });
   const year = format(date, { year: 'numeric' });
 
-  node.innerText = `${dayName}, ${day} ${monthName} ${year}`;
+  return { day, dayName, monthName, year };
 }
 
-function renderBS(date) {
-  const dayNode = document.querySelector('.Calendar__bs-day');
-  const dateNode = document.querySelector('.Calendar__bs-date');
+function formatAsBS(date) {
+  const monthNames = [
+    "Baishakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin",
+    "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
+  ];
 
   const adDate = {
     day: Number.parseInt(format(date, { day: 'numeric' }), 10),
@@ -31,13 +40,12 @@ function renderBS(date) {
 
   const bsDate = toBS(adDate);
 
-  const monthName = [
-    "Baishakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin",
-    "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
-  ][bsDate.month - 1];
-
-  dayNode.innerText = bsDate.day;
-  dateNode.innerText = `${monthName} ${bsDate.year}`;
+  return {
+    day: bsDate.day,
+    dayName: format(date, { weekday: 'short' }),
+    monthName: monthNames[bsDate.month - 1],
+    year: bsDate.year
+  }
 }
 
 function getDateFromQuery() {
@@ -48,27 +56,49 @@ function getDateFromQuery() {
   if(params.get('ad')) {
     const [year, month, day] = split(params.get('ad'));
     if(!year || !month || !day) throw new Error('Please enter the date query in a valid format. Eg: 2020-01-30');
-    return new Date(Date.UTC(year, month - 1, day) + NPT_OFFSET_MS); // always assume the input is in NPT
+
+    return {
+      queryType: 'ad',
+      date: new Date(Date.UTC(year, month - 1, day) + NPT_OFFSET_MS) // always assume the input is in NPT
+    };
   }
 
   if(params.get('bs')) {
     const [year, month, day] = split(params.get('bs'));
     if(!year || !month || !day) throw new Error('Please enter the date query in a valid format. Eg: 2075-01-30');
     const ad = toAD({ year, month, day });
-    return new Date(Date.UTC(ad.year, ad.month - 1, ad.day) + NPT_OFFSET_MS); // always assume the input is in NPT
+
+    return {
+      queryType: 'bs',
+      date: new Date(Date.UTC(ad.year, ad.month - 1, ad.day) + NPT_OFFSET_MS) // always assume the input is in NPT
+    }
   }
+
+  return {};
 }
 
 function renderCalendar() {
-  const date = getDateFromQuery();
-  if(date) {
-    document.body.classList.add('is-query');
-  } else {
-    document.body.classList.remove('is-query');
-  }
+  const { date = new Date(), queryType } = getDateFromQuery();
 
-  renderAD(date || new Date());
-  renderBS(date || new Date());
+  switch(queryType) {
+    case 'bs':
+      document.body.classList.add('is-query');
+      renderPrimary(formatAsAD(date));
+      renderSecondary(formatAsBS(date));
+      break;
+
+    case 'ad':
+      document.body.classList.add('is-query');
+      renderPrimary(formatAsBS(date));
+      renderSecondary(formatAsAD(date));
+      break;
+
+    default: {
+      document.body.classList.remove('is-query');
+      renderPrimary(formatAsBS(date));
+      renderSecondary(formatAsAD(date));
+    }
+  }
 }
 
 function renderError(message) {
