@@ -49,7 +49,7 @@ function formatAsBS(date) {
 }
 
 function getDateFromQuery() {
-  const NPT_OFFSET_MS = -345 * 60 * 1000;
+  const NPT_OFFSET_MS = 345 * 60 * 1000;
   const split = str=> str.split('-').map(part=> Number.parseInt(part, 10)); // split YYYY-MM-DD formatted string into parts
   const params = new URLSearchParams(window.location.search);
 
