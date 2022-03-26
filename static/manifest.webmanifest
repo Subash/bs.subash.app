@@ -1,0 +1,13 @@
+{
+  "name": "Nepali Date",
+  "short_name": "Nepali Date",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "sizes": "768x768",
+      "type": "image/png"
+    }
+  ]
+}

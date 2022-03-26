@@ -1,8 +1,12 @@
-FROM nginx:alpine
+FROM node:16-alpine
 
-COPY nginx.conf /etc/nginx/
-COPY img /public/img
-COPY *.html /public/
-COPY manifest.webmanifest /public/
+RUN mkdir -p /app
+WORKDIR /app
 
-EXPOSE 80
+COPY package.json /app/
+COPY package-lock.json /app/
+RUN npm ci
+
+COPY build/ /app/
+
+CMD ["node", "node_modules/.bin/forever", "index.js"]
