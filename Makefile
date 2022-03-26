@@ -1,6 +1,7 @@
-hash := $(shell git rev-parse --short HEAD)
-tag := subash/bs.subashpathak.com:$(hash)
-export PATH := $(PATH):$(PWD)/node_modules/.bin
+PATH  := $(PATH):$(PWD)/node_modules/.bin
+SHELL := env PATH=$(PATH) /bin/bash
+HASH  := $(shell git rev-parse --short HEAD)
+TAG   := subash/bs.subashpathak.com:$(HASH)
 
 dev:
 	svelte-kit dev
@@ -27,8 +28,8 @@ lint:
 format:
 	prettier --ignore-path .gitignore --write --plugin-search-dir=. .
 
-build-container:
-	docker buildx build --platform linux/amd64,linux/arm64 --push --tag $(tag) .
+build-container: build
+	docker buildx build --platform linux/amd64,linux/arm64 --push --tag $(TAG) .
 	docker buildx build --platform linux/amd64,linux/arm64 --push --tag subash/bs.subashpathak.com:latest .
 
 deploy: build-container
