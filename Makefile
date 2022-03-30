@@ -36,7 +36,7 @@ deploy: build-container
 	ssh subash@subashpathak.com " \
 		cd personal-server && \
 		docker-compose pull --quiet bs && \
-		docker-compose up --detach bs
+		docker-compose up --detach bs \
 	"
 
 .PHONY: dev build preview prepare check check-watch
