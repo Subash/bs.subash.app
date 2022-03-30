@@ -53,7 +53,6 @@
   }
 
   .primary-day {
-    padding-top: 4vmin;
     font-size: 40vmin;
   }
 

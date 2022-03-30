@@ -17,7 +17,7 @@
   body {
     background: #0f0f1e;
     color: #fff;
-    font-family: "system-ui", sans-serif;
+    font-family: system-ui, sans-serif;
     font-weight: lighter;
   }
 </style>
