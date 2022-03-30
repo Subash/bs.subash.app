@@ -42,7 +42,7 @@
 
 <style>
   .calendar {
-    height: 85vh;
+    height: 85vmin;
     display: grid;
     align-content: center;
     text-align: center;
@@ -53,8 +53,8 @@
   }
 
   .primary-day {
+    padding-top: 4vmin;
     font-size: 40vmin;
-    font-weight: 100;
   }
 
   .primary-date {

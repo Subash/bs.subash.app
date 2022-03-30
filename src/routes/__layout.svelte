@@ -1,10 +1,3 @@
-<svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap"
-    rel="stylesheet"
-  />
-</svelte:head>
-
 <slot />
 
 <style global>
@@ -24,7 +17,7 @@
   body {
     background: #0f0f1e;
     color: #fff;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
+    font-family: "system-ui", sans-serif;
+    font-weight: lighter;
   }
 </style>
