@@ -2,16 +2,16 @@ PATH  := $(PATH):$(PWD)/node_modules/.bin
 SHELL := env PATH=$(PATH) /bin/bash
 
 dev:
-	svelte-kit dev
+	vite dev
 
 build:
-	svelte-kit build
+	vite build
 
 preview: build
-	svelte-kit preview
+	vite preview
 
 prepare:
-	svelte-kit sync
+	vite sync
 
 check:
 	svelte-check --tsconfig ./tsconfig.json

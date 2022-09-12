@@ -8,13 +8,3 @@ declare namespace App {
   // interface Session {}
   // interface Stuff {}
 }
-
-declare module "@sbspk/bs" {
-  interface SimpleDate {
-    year: number;
-    month: number;
-    day: number;
-  }
-
-  let toBS: (ad: SimpleDate) => SimpleDate;
-}
