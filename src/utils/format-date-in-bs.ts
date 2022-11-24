@@ -1,5 +1,5 @@
 import { toBS, type ADDate, type BSDate } from "@sbspk/bs";
-import formatDate from "./format-date.js";
+import type formatDate from "./format-date.js";
 
 export function formatDateInBS(date: Date): ReturnType<typeof formatDate> {
   const ad: ADDate = {
@@ -17,10 +17,9 @@ export function formatDateInBS(date: Date): ReturnType<typeof formatDate> {
   ];
 
   return {
-    weekday: formatDate(date).weekday,
     monthName: months[bs.month - 1],
-    day: String(bs.day).padStart(2, "0"),
-    month: String(bs.month).padStart(2, "0"),
+    day: String(bs.day),
+    month: String(bs.month),
     year: String(bs.year)
   };
 }

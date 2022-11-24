@@ -7,10 +7,9 @@ function format(date: Date, options: Record<string, string> = {}) {
 
 export default function formatDate(date: Date) {
   return {
-    weekday: format(date, { weekday: "short" }),
     monthName: format(date, { month: "long" }),
-    day: format(date, { day: "2-digit" }),
-    month: format(date, { month: "2-digit" }),
+    day: format(date, { day: "numeric" }),
+    month: format(date, { month: "numeric" }),
     year: format(date, { year: "numeric" })
   };
 }
