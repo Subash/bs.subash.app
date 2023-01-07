@@ -1,14 +1,16 @@
-import { toBS, type ADDate, type BSDate } from "@sbspk/bs";
-import type formatDate from "./format-date.js";
+import { toBikramSambat } from "@sbspk/bs";
+import formatDate from "./format-date.js";
 
 export function formatDateInBS(date: Date): ReturnType<typeof formatDate> {
-  const ad: ADDate = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate()
+  const { year, month, day } = formatDate(date);
+
+  const ce = {
+    year: parseInt(year, 10),
+    month: parseInt(month, 10),
+    day: parseInt(day, 10)
   };
 
-  const bs: BSDate = toBS(ad);
+  const bs = toBikramSambat(ce);
 
   // prettier-ignore
   const months = [

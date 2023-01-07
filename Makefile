@@ -7,12 +7,6 @@ dev:
 build:
 	vite build
 
-preview: build
-	vite preview
-
-prepare:
-	vite sync
-
 check:
 	svelte-check --tsconfig ./tsconfig.json
 
