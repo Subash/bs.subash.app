@@ -3,7 +3,7 @@
   "type": "module",
   "private": "true",
   "devDependencies": {
-    "@sbspk/bs": "^3.0.0",
+    "@sbspk/bs": "^4.0.0",
     "@sveltejs/adapter-auto": "^1.0.0",
     "@sveltejs/kit": "^1.0.7",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
